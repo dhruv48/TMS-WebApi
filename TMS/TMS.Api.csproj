@@ -1,0 +1,27 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Catel.Core" Version="5.12.19" />
+    <PackageReference Include="Microsoft.AspNetCore.Cors" Version="2.2.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="5.0.11" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+    <PackageReference Include="NLog" Version="5.0.0-preview.3" />
+    <PackageReference Include="NLog.Web.AspNetCore" Version="5.0.0-preview.3" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="5.6.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Tms.common\Tms.Common.csproj" />
+    <ProjectReference Include="..\Tms.DB\Tms.DB.csproj" />
+    <ProjectReference Include="..\Tms.Manager\Tms.Manager.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="TmsWebApp\" />
+  </ItemGroup>
+
+</Project>
