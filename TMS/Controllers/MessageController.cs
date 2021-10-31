@@ -1,9 +1,4 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using Microsoft.AspNetCore.Mvc;
 using Tms.Common.Entities;
 using Tms.Manager.Interface;
 
@@ -20,7 +15,7 @@ namespace TMS.Controllers
         }
 
         [HttpPost]
-        public IActionResult Insert(Message message)
+        public IActionResult Insert([FromBody]Message message)
         {
             if(ModelState.IsValid)
             {
@@ -38,10 +33,24 @@ namespace TMS.Controllers
                 return Ok(false);
             }
         }
-
+        [HttpGet]
         public IActionResult GetAll()
         {
             return Ok(_messageManager.GetAll());
         }
+
+        [HttpDelete]
+        public void Delete(long Id)
+        {
+            _messageManager.Delete(Id);
+        }
+
+        [HttpPut]
+        public IActionResult Update([FromBody]Message message,long Id)
+        {
+            return Ok(_messageManager.Update(message, Id));
+        }
+
+        
     }
 }

@@ -21,11 +21,25 @@ namespace Tms.DB.Implement
         {
             try
             {
-                string query = string.Format(@"INSERT INTO tms.feedback(name,subject,email,message)
-                       VALUES(@name,@subject,@email,@message)returning id");
+                string query = string.Format(@"INSERT INTO tms.feedback(name,email,subject,message)
+                       VALUES(@name,@email,@subject,@messages)");
                 return connection.Execute(query, message);
             }
-            catch (Exception)
+            catch (Exception ee)
+            {
+
+                throw;
+            }
+        }
+
+        public void Delete(long Id)
+        {
+            try
+            {
+                string query = "DELETE from tms.feedback where id = @id";
+                connection.Execute(query, new { id = Id });
+            }
+            catch (Exception ee)
             {
 
                 throw;
@@ -36,7 +50,7 @@ namespace Tms.DB.Implement
         {
             try
             {
-                string query = string.Format(@"Select * from tms.message where isactive");
+                string query = string.Format(@"Select * from tms.feedback where isactive");
                 return connection.Query<Message>(query).ToList();
             }
             catch (Exception)
@@ -51,9 +65,18 @@ namespace Tms.DB.Implement
             throw new NotImplementedException();
         }
 
-        public long Update(Message obj)
+        public long Update(Message message, long Id)
         {
-            throw new NotImplementedException();
+            try
+            {
+                string query = string.Format(@"Update tms.feedback SET name= @name,message=@messages,subject=@subject,email=@email WHERE id =@id");
+                return connection.Execute(query, message);
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
         }
     }
 }

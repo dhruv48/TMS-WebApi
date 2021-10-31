@@ -9,8 +9,9 @@ namespace Tms.Manager.Interface
     public interface IBaseManager<T>
     {
         List<T> GetAll();
-        long Update(T obj);
+        long Update(T obj ,long Id);
         long Add(T obj);
         T GetBy(long Id);
+        void Delete(long Id);
     }
 }

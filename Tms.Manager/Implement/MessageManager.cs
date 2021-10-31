@@ -12,13 +12,18 @@ namespace Tms.Manager.Implement
     class MessageManager : IMessageManager
     {
         protected readonly IMessageDB _messageDB;
-        public MessageManager(IMessageDB managerDB)
+        public MessageManager(IMessageDB messageDB)
         {
-            _messageDB = managerDB;
+            _messageDB = messageDB;
         }
         public long Add(Message message)
         {
             return _messageDB.Add(message);
+        }
+
+        public void Delete(long Id)
+        {
+            _messageDB.Delete(Id);
         }
 
         public List<Message> GetAll()
@@ -31,9 +36,11 @@ namespace Tms.Manager.Implement
             throw new NotImplementedException();
         }
 
-        public long Update(Message obj)
+        public long Update(Message message, long Id)
         {
-            throw new NotImplementedException();
+            return (_messageDB.Update(message, Id));
         }
+
+        
     }
 }
